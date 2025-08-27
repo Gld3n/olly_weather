@@ -196,6 +196,7 @@ class WeatherView extends StatelessWidget {
                       Text(
                         weatherViewModel.weather?.conditionText ??
                             'Cloudy with a 99.9% chance of getting hired.', //* Yeah, I did in fact hardcode this.
+                        textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 18,
                           color: primaryColor,

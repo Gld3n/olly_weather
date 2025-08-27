@@ -22,6 +22,7 @@ Go to the [site hosted on GitHub Pages](https://your-github-pages-site) which us
 better separation of concerns and readability, and I also wanted to challenge myself giving it a try.
 - Implemented [pattern matching](https://docs.flutter.dev/cookbook/networking/fetch-data#3-convert-the-response-into-a-custom-dart-object) for the API response, making parsing straightforward.
 - Polymorphic widgets (WeatherScaffold, ActionButton) for better code organization and reusability.
+- Designed mobile-first and responsive UI using LayoutBuilder and MediaQueries.
 
 ## Potential improvements
 
@@ -34,6 +35,7 @@ These are some potential improvements left on the table considering both the sco
 - Better handle data integrity and default values.
 - More comprehensive widget separation and reusability (for example the degree display, location display, login form, etc.).
 - Currently, the AppBar and Footer pop out when navigating. A better approach would be to have a single Scaffold and change only the body.
+- Variables usage and passing through widgets could be improved for better maintainability and reactivity. Decided to keep it working as it was for the sake of time.
 
 ## Useful resources consulted
 
