@@ -22,22 +22,22 @@ class _LoginViewState extends State<LoginView> {
   String? _error;
 
   void _login() {
-    if (_usernameController.text == 'user' &&
-        _passwordController.text == 'pass') {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => WeatherView(
-            title: widget.title,
-            weatherViewModel: WeatherViewModel(WeatherService(widget.apiKey)),
-          ),
-        ),
-      );
-    } else {
-      setState(() {
-        _error = 'Thou shalt not pass.';
-      });
+    if (_usernameController.text != 'user' ||
+        _passwordController.text != 'pass') {
+      setState(() => _error = 'Thou shalt not pass.');
+      return;
     }
+
+    setState(() => _error = null);
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => WeatherView(
+          title: widget.title,
+          weatherViewModel: WeatherViewModel(WeatherService(widget.apiKey)),
+        ),
+      ),
+    );
   }
 
   @override
