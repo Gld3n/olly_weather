@@ -25,6 +25,18 @@ class WeatherScaffold extends StatelessWidget {
         ),
       ),
       body: child,
+      bottomNavigationBar: Container(
+        height: 50,
+        color: WeatherColors.kDefaultContainerColor,
+        alignment: Alignment.center,
+        child: Text(
+          '© 2025 Olly Weather by Robert Vale. All rights (if any) reserved.',
+          style: TextStyle(
+            color: WeatherColors.kDefaultPrimaryColor,
+            fontSize: 14,
+          ),
+        ),
+      ),
     );
   }
 }
