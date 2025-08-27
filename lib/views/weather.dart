@@ -80,18 +80,23 @@ class WeatherView extends StatelessWidget {
               },
             ),
             const SizedBox(height: 6),
-            ActionButton(
-              label: 'Log out',
-              onPressed: () {
-                Navigator.pop(context);
-              },
-            ),
-            // TODO: REMOVE THIS
-            ActionButton(
-              label: 'Update Weather',
-              onPressed: () {
-                weatherViewModel.getWeather();
-              },
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              spacing: 16,
+              children: [
+                ActionButton(
+                  label: 'Update Weather',
+                  onPressed: () {
+                    weatherViewModel.getWeather();
+                  },
+                ),
+                ActionButton(
+                  label: 'Log out',
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                ),
+              ],
             ),
           ],
         ),
