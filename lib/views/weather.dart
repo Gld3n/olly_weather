@@ -298,8 +298,8 @@ class WeatherExtraInfoContent extends StatelessWidget {
         return isWide
             ? GridView.count(
                 crossAxisCount: 2,
-                crossAxisSpacing: 6,
-                mainAxisSpacing: 6,
+                crossAxisSpacing: 2,
+                mainAxisSpacing: 2,
                 childAspectRatio: 3.5,
                 shrinkWrap: true,
                 children: children,
