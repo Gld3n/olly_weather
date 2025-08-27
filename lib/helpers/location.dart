@@ -27,10 +27,11 @@ class LocationHelper {
     }
   }
 
+  //* Workaround for Permissions API issue (see README.md)
   static Future<PermissionStatus> _checkLocationPermissionOnWeb() async {
-    html.PermissionStatus? _status = await html.window.navigator.permissions
+    html.PermissionStatus? status = await html.window.navigator.permissions
         ?.query({'name': 'geolocation'});
-    switch (_status?.state) {
+    switch (status?.state) {
       case 'granted':
         return PermissionStatus.granted;
       case 'prompt':
