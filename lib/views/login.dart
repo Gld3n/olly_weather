@@ -22,8 +22,8 @@ class _LoginViewState extends State<LoginView> {
   String? _error;
 
   void _login() {
-    if (_usernameController.text != 'user' ||
-        _passwordController.text != 'pass') {
+    if (_usernameController.text != 'olly' ||
+        _passwordController.text != 'weather123') {
       setState(() => _error = 'Thou shalt not pass.');
       return;
     }
