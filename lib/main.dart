@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
         home: Scaffold(
           body: Center(
             child: Text(
-              'API key is missing. Please provide it via --dart-define=API_KEY=your_api_key or in a .env file.',
+              'API key is missing. Please provide it via a .env file.',
             ),
           ),
         ),

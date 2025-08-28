@@ -5,7 +5,8 @@ Simple weather app built with Flutter using the MVVM architecture.
 ## Usage
 
 - Get an API key from [WeatherAPI](https://www.weatherapi.com/)
-- Run the project with `flutter run --dart-define="API_KEY=your_api_key"` (or set the `API_KEY` environment variable)
+- Store the API key in a `.env` file at the root of the project as `API_KEY=<your_api_key>`
+- Run the project with `flutter run`
 - Login with `user: olly` and `password: weather123` for demo purposes
 
 ---
