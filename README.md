@@ -49,3 +49,7 @@ These are some potential improvements left on the table considering both the sco
 - [Date and time manipulation](https://api.flutter.dev/flutter/dart-core/DateTime-class.html)
 - [Navigation basics](https://docs.flutter.dev/cookbook/navigation/navigation-basics)
 - [Workaround to Location package issue](https://github.com/Lyokone/flutterlocation/issues/987#issuecomment-2441437378)
+
+## Demo
+
+![demo](https://raw.githubusercontent.com/Gld3n/olly_weather/main/demo/olly_weather_demo.gif)
