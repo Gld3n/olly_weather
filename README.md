@@ -13,6 +13,10 @@ Simple weather app built with Flutter using the MVVM architecture.
 > **TL;DR**: Tried challenging myself with some intermediate Flutter concepts and best practices  
 > and left some things on the table for the sake of simplicity and time constraints.
 
+## Demo
+
+![demo](https://raw.githubusercontent.com/Gld3n/olly_weather/main/demo/olly_weather_demo.gif)
+
 ## Implemented practices
 
 - Used const constructors for optimization, as widgets with fixed data can just be compiled once and reused.
@@ -49,7 +53,3 @@ These are some potential improvements left on the table considering both the sco
 - [Date and time manipulation](https://api.flutter.dev/flutter/dart-core/DateTime-class.html)
 - [Navigation basics](https://docs.flutter.dev/cookbook/navigation/navigation-basics)
 - [Workaround to Location package issue](https://github.com/Lyokone/flutterlocation/issues/987#issuecomment-2441437378)
-
-## Demo
-
-![demo](https://raw.githubusercontent.com/Gld3n/olly_weather/main/demo/olly_weather_demo.gif)
