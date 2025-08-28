@@ -17,7 +17,7 @@ class SkeletonWeatherCard extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            // Main weather info card
+            //* Main weather info card
             Container(
               height: 150,
               decoration: BoxDecoration(
@@ -26,7 +26,7 @@ class SkeletonWeatherCard extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 12),
-            // Extra weather info card
+            //* Extra weather info card
             Container(
               height: 300,
               decoration: BoxDecoration(
