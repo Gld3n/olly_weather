@@ -4,9 +4,6 @@ Simple weather app built with Flutter using the MVVM architecture.
 
 ## Usage
 
-<!-- TODO: replace with actual page -->
-Go to the [site hosted on GitHub Pages](https://your-github-pages-site) which uses my API key, or:
-
 - Get an API key from [WeatherAPI](https://www.weatherapi.com/)
 - Run the project with `flutter run --dart-define="API_KEY=your_api_key"` (or set the `API_KEY` environment variable)
 
@@ -33,9 +30,11 @@ These are some potential improvements left on the table considering both the sco
 - Better UI/UX design for a more intuitive user experience and _flashiness_.
 - Make a more comprehensive usage of the weather data and improve the overall data presentation.
 - Better handle data integrity and default values.
-- More comprehensive widget separation and reusability (for example the degree display, location display, login form, etc.).
+- More comprehensive widget separation and reusability (for example the degree display, location display, login form, etc.). Readability would also improve.
 - Currently, the AppBar and Footer pop out when navigating. A better approach would be to have a single Scaffold and change only the body.
 - Variables usage and passing through widgets could be improved for better maintainability and reactivity. Decided to keep it working as it was for the sake of time.
+- Implement unit and widget tests to ensure reliability.
+- Overall adaptability and responsiveness is improvable.
 
 ## Useful resources consulted
 
