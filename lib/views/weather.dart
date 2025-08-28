@@ -45,53 +45,18 @@ class WeatherView extends StatelessWidget {
                   return const SkeletonWeatherCard();
                 }
 
-                //* Weather info container
-                return ConstrainedBox(
-                  constraints: const BoxConstraints(
-                    minWidth: 300,
-                    maxWidth: 600,
-                  ),
-                  child: Container(
-                    padding: const EdgeInsets.all(16),
-                    margin: const EdgeInsets.all(14),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12),
-                      gradient: gradient,
-                      boxShadow: [
-                        BoxShadow(
-                          color: const Color.fromARGB(255, 225, 225, 225),
-                          blurRadius: 5,
-                          offset: Offset(0, 3),
-                        ),
-                      ],
-                    ),
-                    //* Weather info cards
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        buildMainWeatherInfoCard(
-                          primaryColor: primaryColor,
-                          containerColor: containerColor,
-                          weekday: weekday,
-                          weatherViewModel: weatherViewModel,
-                          context: context,
-                        ),
-                        SizedBox(height: 12),
-                        buildExtraWeatherInfoCard(
-                          primaryColor: primaryColor,
-                          containerColor: containerColor,
-                          weatherViewModel: weatherViewModel,
-                          context: context,
-                        ),
-                      ],
-                    ),
-                  ),
+                return WeatherInfoContainer(
+                  primaryColor: primaryColor,
+                  containerColor: containerColor,
+                  gradient: gradient,
+                  weekday: weekday,
+                  weatherViewModel: weatherViewModel,
                 );
               },
             ),
             const SizedBox(height: 6),
-            //* Action buttons
             Row(
+              //* Action buttons
               mainAxisAlignment: MainAxisAlignment.center,
               spacing: 16,
               children: [
@@ -101,6 +66,65 @@ class WeatherView extends StatelessWidget {
                 ),
                 ActionButton(label: 'Log out', onPressed: logOut),
               ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class WeatherInfoContainer extends StatelessWidget {
+  final Color primaryColor;
+  final Color containerColor;
+  final LinearGradient gradient;
+  final String weekday;
+  final WeatherViewModel weatherViewModel;
+
+  const WeatherInfoContainer({
+    super.key,
+    required this.primaryColor,
+    required this.containerColor,
+    required this.gradient,
+    required this.weekday,
+    required this.weatherViewModel,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ConstrainedBox(
+      constraints: const BoxConstraints(minWidth: 300, maxWidth: 600),
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        margin: const EdgeInsets.all(14),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12),
+          gradient: gradient,
+          boxShadow: [
+            BoxShadow(
+              color: const Color.fromARGB(255, 225, 225, 225),
+              blurRadius: 5,
+              offset: Offset(0, 3),
+            ),
+          ],
+        ),
+        //* Weather info cards
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            buildMainWeatherInfoCard(
+              primaryColor: primaryColor,
+              containerColor: containerColor,
+              weekday: weekday,
+              weatherViewModel: weatherViewModel,
+              context: context,
+            ),
+            SizedBox(height: 12),
+            buildExtraWeatherInfoCard(
+              primaryColor: primaryColor,
+              containerColor: containerColor,
+              weatherViewModel: weatherViewModel,
+              context: context,
             ),
           ],
         ),
@@ -233,51 +257,6 @@ class WeatherView extends StatelessWidget {
   }
 }
 
-(Color, Color, LinearGradient) _pickColorTheme(
-  String conditionText,
-  double tempC,
-) {
-  if (conditionText.toLowerCase().contains('rain') ||
-      conditionText.toLowerCase().contains('cloud')) {
-    return (
-      WeatherColors.kRainyPrimaryColor,
-      WeatherColors.kRainyContainerColor,
-      WeatherGradients.kRainyWeatherGradient,
-    );
-  } else if (tempC > 25) {
-    return (
-      WeatherColors.kWarmPrimaryColor,
-      WeatherColors.kWarmContainerColor,
-      WeatherGradients.kWarmWeatherGradient,
-    );
-  } else if (tempC < 15) {
-    return (
-      WeatherColors.kColdPrimaryColor,
-      WeatherColors.kColdContainerColor,
-      WeatherGradients.kColdWeatherGradient,
-    );
-  } else {
-    return (
-      WeatherColors.kDefaultPrimaryColor,
-      WeatherColors.kDefaultContainerColor,
-      WeatherGradients.kDefaultWeatherGradient,
-    );
-  }
-}
-
-String _getCurrentWeekday(DateTime date) {
-  const weekdays = {
-    1: 'Monday',
-    2: 'Tuesday',
-    3: 'Wednesday',
-    4: 'Thursday',
-    5: 'Friday',
-    6: 'Saturday',
-    7: 'Sunday',
-  };
-  return weekdays[date.weekday] ?? '';
-}
-
 class WeatherExtraInfoContent extends StatelessWidget {
   final Color primaryColor;
   final WeatherViewModel weatherViewModel;
@@ -337,4 +316,49 @@ class WeatherExtraInfoContent extends StatelessWidget {
       ),
     );
   }
+}
+
+(Color, Color, LinearGradient) _pickColorTheme(
+  String conditionText,
+  double tempC,
+) {
+  if (conditionText.toLowerCase().contains('rain') ||
+      conditionText.toLowerCase().contains('cloud')) {
+    return (
+      WeatherColors.kRainyPrimaryColor,
+      WeatherColors.kRainyContainerColor,
+      WeatherGradients.kRainyWeatherGradient,
+    );
+  } else if (tempC > 25) {
+    return (
+      WeatherColors.kWarmPrimaryColor,
+      WeatherColors.kWarmContainerColor,
+      WeatherGradients.kWarmWeatherGradient,
+    );
+  } else if (tempC < 15) {
+    return (
+      WeatherColors.kColdPrimaryColor,
+      WeatherColors.kColdContainerColor,
+      WeatherGradients.kColdWeatherGradient,
+    );
+  } else {
+    return (
+      WeatherColors.kDefaultPrimaryColor,
+      WeatherColors.kDefaultContainerColor,
+      WeatherGradients.kDefaultWeatherGradient,
+    );
+  }
+}
+
+String _getCurrentWeekday(DateTime date) {
+  const weekdays = {
+    1: 'Monday',
+    2: 'Tuesday',
+    3: 'Wednesday',
+    4: 'Thursday',
+    5: 'Friday',
+    6: 'Saturday',
+    7: 'Sunday',
+  };
+  return weekdays[date.weekday] ?? '';
 }
