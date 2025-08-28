@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:olly_weather/viewmodels/weather.dart';
 import 'package:olly_weather/constants.dart';
 import 'package:olly_weather/widgets/action_button.dart';
+import 'package:olly_weather/widgets/skeleton_weather_card.dart';
 import 'package:olly_weather/widgets/weather_scaffold.dart';
 
 class WeatherView extends StatelessWidget {
@@ -16,6 +17,14 @@ class WeatherView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    void logOut() {
+      Navigator.pop(context);
+    }
+
+    void refreshWeather() {
+      weatherViewModel.getWeather();
+    }
+
     return WeatherScaffold(
       child: Center(
         child: Column(
@@ -33,11 +42,10 @@ class WeatherView extends StatelessWidget {
                     _pickColorTheme(conditionText, tempC);
 
                 if (weatherViewModel.loading) {
-                  return const CircularProgressIndicator(
-                    color: WeatherColors.kDefaultPrimaryColor,
-                  );
+                  return const SkeletonWeatherCard();
                 }
 
+                //* Weather info container
                 return ConstrainedBox(
                   constraints: const BoxConstraints(
                     minWidth: 300,
@@ -57,6 +65,7 @@ class WeatherView extends StatelessWidget {
                         ),
                       ],
                     ),
+                    //* Weather info cards
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
@@ -64,6 +73,7 @@ class WeatherView extends StatelessWidget {
                           primaryColor: primaryColor,
                           containerColor: containerColor,
                           weekday: weekday,
+                          weatherViewModel: weatherViewModel,
                           context: context,
                         ),
                         SizedBox(height: 12),
@@ -80,22 +90,16 @@ class WeatherView extends StatelessWidget {
               },
             ),
             const SizedBox(height: 6),
+            //* Action buttons
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               spacing: 16,
               children: [
                 ActionButton(
                   label: 'Update Weather',
-                  onPressed: () {
-                    weatherViewModel.getWeather();
-                  },
+                  onPressed: refreshWeather,
                 ),
-                ActionButton(
-                  label: 'Log out',
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                ),
+                ActionButton(label: 'Log out', onPressed: logOut),
               ],
             ),
           ],
@@ -108,8 +112,12 @@ class WeatherView extends StatelessWidget {
     required Color primaryColor,
     required Color containerColor,
     required String weekday,
+    required WeatherViewModel weatherViewModel,
     required BuildContext context,
   }) {
+    final String temperature =
+        '${weatherViewModel.weather?.tempC ?? '--'} °C / ${weatherViewModel.weather?.tempF ?? '--'} °F';
+
     return SizedBox(
       height: 150,
       width: MediaQuery.of(context).size.width * 0.8,
@@ -123,16 +131,18 @@ class WeatherView extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  //* Temperature display
                   Icon(Icons.thermostat, color: primaryColor, size: 36),
                   Text(
-                    '${weatherViewModel.weather?.tempC ?? '--'} °C / ${weatherViewModel.weather?.tempF ?? '--'} °F',
-                    style: TextStyle(fontSize: 36, color: primaryColor),
+                    temperature,
+                    style: TextStyle(fontSize: 34, color: primaryColor),
                   ),
                 ],
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
+                  //* Location + weekday
                   Row(
                     children: [
                       Icon(Icons.location_on, color: primaryColor, size: 18),
@@ -191,6 +201,7 @@ class WeatherView extends StatelessWidget {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
+                      //* Weather condition icon + text
                       weatherImage,
                       const SizedBox(height: 16),
                       Text(
@@ -207,6 +218,7 @@ class WeatherView extends StatelessWidget {
                   ),
                 ),
               ),
+              //* Extra weather info grid/list
               Expanded(
                 child: WeatherExtraInfoContent(
                   primaryColor: primaryColor,
