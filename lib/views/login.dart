@@ -73,7 +73,7 @@ class _LoginViewState extends State<LoginView> {
                       controller: _usernameController,
                       decoration: InputDecoration(
                         hint: Text(
-                          'DarthV_42',
+                          'ex: DarthV_42',
                           style: TextStyle(
                             color: WeatherColors.kDefaultPrimaryColor,
                           ),
@@ -100,7 +100,7 @@ class _LoginViewState extends State<LoginView> {
                       obscureText: true,
                       decoration: InputDecoration(
                         hint: Text(
-                          'Padme123',
+                          'ex: Padme123',
                           style: TextStyle(
                             color: WeatherColors.kDefaultPrimaryColor,
                           ),
